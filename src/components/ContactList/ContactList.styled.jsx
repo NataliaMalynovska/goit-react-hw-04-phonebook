@@ -23,7 +23,9 @@ export const ButtonDelete = styled.button`
   box-shadow: 15px 16px 16px -5px rgba(0, 0, 0, 0.6);
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    transition: 0.6s;
     cursor: pointer;
+    background-color: Salmon;
   }
 `;
