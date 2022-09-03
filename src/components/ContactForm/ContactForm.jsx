@@ -1,8 +1,8 @@
 // import { Component } from 'react';
 import { Box } from '../Box';
-import { Label, ButtonSubmit, Error } from './ContactForm.styled';
+import { Label, ButtonSubmit,  } from './ContactForm.styled';
 import styled from 'styled-components';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field,  } from 'formik';
 import * as yup from 'yup';
 
 const Input = styled(Field)`
@@ -22,28 +22,30 @@ const Input = styled(Field)`
     transform: scale(1.05);
   }
 `;
-const namePattern = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-const nameErr = "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
-const numberPattern = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-const numberErr = "Phone number must be digits and can contain spaces, dashes, parentheses and can start with +";
+// const namePattern = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+// const nameErr = "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
+// const numberPattern = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+// const numberErr = "Phone number must be digits and can contain spaces, dashes, parentheses and can start with +";
 // const errorMessage = "This field is required";
 
 const schema = yup.object().shape({
-  name: yup.string().required().matches(namePattern, nameErr),
-  number: yup.string().min(6, 'Too Short!').max(16, 'Too Long!').required().matches(numberPattern, numberErr),
+  name: yup.string().required(),
+  // .matches(namePattern, nameErr),
+  number: yup.string().min(6, 'Too Short!').max(16, 'Too Long!'),
+  // .required().matches(numberPattern, numberErr),
 });
 const initialValues = {
   name: '',
   number: '',
 };
-const FormError = ({ name }) => {
-  return (
-    <ErrorMessage
-      name={name}
-      render={message => <Error>{message}</Error>}
-    />
-  );
-};
+// const FormError = ({ name }) => {
+//   return (
+//     <ErrorMessage
+//       name={name}
+//       render={message => <Error>{message}</Error>}
+//     />
+//   );
+// };
 
 const ContactForm = ({ onSubmit }) => {
   // const handleSubmit = (values, { resetForm }) => {
@@ -73,7 +75,7 @@ const ContactForm = ({ onSubmit }) => {
               // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               // required
             />
-            <FormError name="name" />
+            {/* <FormError name="name" /> */}
           </Label>
           <Label htmlFor="number">
             Number
