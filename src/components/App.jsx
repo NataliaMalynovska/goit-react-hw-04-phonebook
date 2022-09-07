@@ -27,7 +27,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const nextContacts = this.state.contacts;
     const prevContacts = prevState.contacts;
 
@@ -36,7 +36,7 @@ class App extends Component {
     }
   }
 
-  formSubmitHendler = ({ name, number }) => {
+  formSubmitHendler = ({ name, number }, { resetForm }) => {
     const newContact = { id: nanoid(), name, number };
     const newName = this.state.contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -48,9 +48,10 @@ class App extends Component {
         contacts: [newContact, ...prevState.contacts],
       }));
     }
+    resetForm();
   };
-  reset = e => {
-    e.target.reset();
+  resetForm = e => {
+    this.setState({ name: '', number: '' });
   };
 
   handleFilterContacts = e => {

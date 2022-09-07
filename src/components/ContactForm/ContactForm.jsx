@@ -1,10 +1,15 @@
-// import { Component } from 'react';
-import { Box } from '../Box';
-import { Label, ButtonSubmit,  } from './ContactForm.styled';
-import styled from 'styled-components';
-import { Formik, Form, Field,  } from 'formik';
+import PropTypes from 'prop-types';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import styled from 'styled-components';
+import { Box } from '../Box';
+import { Label, ButtonSubmit } from './ContactForm.styled';
 
+const BoxForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+`;
 const Input = styled(Field)`
   dislay: block;
   margin: 16px;
@@ -22,36 +27,36 @@ const Input = styled(Field)`
     transform: scale(1.05);
   }
 `;
-// const namePattern = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-// const nameErr = "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
-// const numberPattern = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-// const numberErr = "Phone number must be digits and can contain spaces, dashes, parentheses and can start with +";
-// const errorMessage = "This field is required";
+const Error = styled(ErrorMessage)`
+  padding: 16px 0;
+  font-size: 16px;
+  color: Salmon;
+`;
+const namePattern =
+  "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+const nameErr =
+  "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
+const numberPattern =
+  /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
+const numberErr =
+  'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +';
+const errorMessage = 'This field is required';
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  // .matches(namePattern, nameErr),
-  number: yup.string().min(6, 'Too Short!').max(16, 'Too Long!'),
-  // .required().matches(numberPattern, numberErr),
+  name: yup.string().required(errorMessage).matches(namePattern, nameErr),
+  number: yup
+    .string()
+    .min(6, 'Too Short!')
+    .max(16, 'Too Long!')
+    .required(errorMessage)
+    .matches(numberPattern, numberErr),
 });
 const initialValues = {
   name: '',
   number: '',
 };
-// const FormError = ({ name }) => {
-//   return (
-//     <ErrorMessage
-//       name={name}
-//       render={message => <Error>{message}</Error>}
-//     />
-//   );
-// };
 
 const ContactForm = ({ onSubmit }) => {
-  // const handleSubmit = (values, { resetForm }) => {
-  //   console.log(values);
-  //   resetForm();
-  // };
   return (
     <Box
       p="16px"
@@ -64,36 +69,24 @@ const ContactForm = ({ onSubmit }) => {
         validationSchema={schema}
         onSubmit={onSubmit}
       >
-        <Form>
+        <BoxForm>
           <Label htmlFor="name">
             Name
-            <Input
-              type="text"
-              name="name"
-              
-              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              // required
-            />
-            {/* <FormError name="name" /> */}
+            <Input type="text" name="name" />
+            <Error name="name" component="div" />
           </Label>
           <Label htmlFor="number">
             Number
-            <Input
-              type="tel"
-              name="number"
-              
-              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              // required
-            />
-            {/* <ErrorMessage name="number" render={msg => <Error>{errorMessage}</Error>} /> */}
+            <Input type="tel" name="number" />
+            <Error name="number" component="div" />
           </Label>
           <ButtonSubmit type="submit">Add contact</ButtonSubmit>
-        </Form>
+        </BoxForm>
       </Formik>
     </Box>
   );
 };
-// }
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 export default ContactForm;

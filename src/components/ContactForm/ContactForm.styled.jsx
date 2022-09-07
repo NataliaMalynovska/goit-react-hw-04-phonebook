@@ -28,6 +28,7 @@ export const Input = styled.input`
 `;
 export const ButtonSubmit = styled.button`
   padding: 8px;
+  align-self: center ;
   width: 140px;
   height: 40px;
   font-weight: 400;

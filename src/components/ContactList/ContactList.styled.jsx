@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
 export const ContactItem = styled.li`
-  height: 56px;
   padding: 8px;
   display: flex;
-  gap: 32px;
-  align-items: center;
+  align-items: baseline;
 `;
 export const ContactData = styled.p`
   font-weight: 400;
   font-size: 20px;
+  width: 45%;
 `;
 export const ButtonDelete = styled.button`
   padding: 8px;
-  width: 100px;
+  width: 140px;
   height: 40px;
   font-weight: 400;
   font-size: 20px;
