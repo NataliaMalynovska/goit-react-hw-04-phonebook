@@ -79,7 +79,7 @@ class App extends Component {
     const visibleContacts = this.getVisibleContacts();
 
     return (
-      <Box as="main" backgroundColor="#aeb2c2" m="16px" p="16px">
+      <Box as="main" backgroundColor="#aeb2c2" m="16px" p="16px" width="560px" mr="auto" ml="auto">
         <GlobalStyle />
         <Section title="Phonebook">
           <ContactForm onSubmit={formSubmitHendler} />
