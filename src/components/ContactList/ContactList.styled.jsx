@@ -4,11 +4,12 @@ export const ContactItem = styled.li`
   padding: 8px;
   display: flex;
   align-items: baseline;
+  justify-content: space-between
 `;
 export const ContactData = styled.p`
   font-weight: 400;
   font-size: 20px;
-  width: 45%;
+
 `;
 export const ButtonDelete = styled.button`
   padding: 8px;

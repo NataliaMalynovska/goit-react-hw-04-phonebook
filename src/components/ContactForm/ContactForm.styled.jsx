@@ -28,7 +28,7 @@ export const Input = styled.input`
 `;
 export const ButtonSubmit = styled.button`
   padding: 8px;
-  align-self: center ;
+  align-self: end;
   width: 140px;
   height: 40px;
   font-weight: 400;
@@ -46,7 +46,7 @@ export const ButtonSubmit = styled.button`
   }
 `;
 export const Error = styled.div`
-padding-bottom: 8px;
-font-size: 14px;
+  padding-bottom: 8px;
+  font-size: 14px;
   color: red;
 `;
