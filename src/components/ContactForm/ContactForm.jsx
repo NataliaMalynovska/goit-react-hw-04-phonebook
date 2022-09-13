@@ -57,6 +57,10 @@ const initialValues = {
 };
 
 const ContactForm = ({ onSubmit }) => {
+  const handleSubmit = (values, actions) => {
+    onSubmit(values);
+    actions.resetForm();
+  };
   return (
     <Box
       p="16px"
@@ -67,7 +71,7 @@ const ContactForm = ({ onSubmit }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         <BoxForm>
           <Label htmlFor="name">
