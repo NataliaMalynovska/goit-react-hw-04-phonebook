@@ -57,7 +57,7 @@ const App = () => {
   return (
     <Box
       as="main"
-      backgroundColor="#acb0be"
+      backgroundColor="#c3c8db"
       m="16px"
       p="16px"
       width="560px"
