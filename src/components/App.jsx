@@ -46,12 +46,12 @@ const App = () => {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+
+  
   const visibleContacts = getVisibleContacts();
 
-  const deleteContact = contactId => {
-    setContacts(prevСontacts => [
-      prevСontacts.filter(contact => contact.id !== contactId),
-    ]);
+  const deleteContact = id => {
+    setContacts(contacts.filter(contact => contact.id !== id));
   };
 
   return (
